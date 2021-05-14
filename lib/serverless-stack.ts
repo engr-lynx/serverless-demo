@@ -10,10 +10,7 @@ export interface ServerlessProps extends StackProps {
 
 export class ServerlessStack extends Stack {
 
-  constructor(scope: Construct, id: string, serverlessProps?: ServerlessProps) {
-    if (serverlessProps == null) {
-      return
-    }
+  constructor(scope: Construct, id: string, serverlessProps: ServerlessProps) {
     super(scope, id, serverlessProps);
     const imageRepo = Repository.fromRepositoryName(this, 'ImageRepo', serverlessProps.imageRepoName);
     const lambdaImage = DockerImageCode.fromEcr(imageRepo);
