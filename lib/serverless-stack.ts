@@ -5,14 +5,14 @@ import { AuthorizationType } from '@aws-cdk/aws-apigateway';
 import { ApiGatewayToLambda } from '@aws-solutions-constructs/aws-apigateway-lambda';
 
 export interface ServerlessProps extends StackProps {
-  imageRepoName: string,
+  repoName: string,
 }
 
 export class ServerlessStack extends Stack {
 
   constructor(scope: Construct, id: string, serverlessProps: ServerlessProps) {
     super(scope, id, serverlessProps);
-    const imageRepo = Repository.fromRepositoryName(this, 'ImageRepo', serverlessProps.imageRepoName);
+    const imageRepo = Repository.fromRepositoryName(this, 'ImageRepo', serverlessProps.repoName);
     const lambdaImage = DockerImageCode.fromEcr(imageRepo);
     const lambdaObj = new DockerImageFunction(this, 'LambdaObj', {
       code: lambdaImage,

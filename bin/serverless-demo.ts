@@ -5,7 +5,7 @@ import { ServerlessStack } from '../lib/serverless-stack';
 
 const app = new App();
 const stackId = app.node.tryGetContext('stackId');  
-const imageRepoName = app.node.tryGetContext('imageRepoName');
+const repoName = app.node.tryGetContext('repoName');
 new ServerlessStack(app, stackId, {
-  imageRepoName,
+  repoName,
 });
