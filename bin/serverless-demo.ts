@@ -4,8 +4,8 @@ import { App } from '@aws-cdk/core';
 import { ServerlessStack } from '../lib/serverless-stack';
 
 const app = new App();
-const slsId = app.node.tryGetContext('slsId');  
+const stackId = app.node.tryGetContext('stackId');  
 const imageRepoName = app.node.tryGetContext('imageRepoName');
-new ServerlessStack(app, slsId, {
+new ServerlessStack(app, stackId, {
   imageRepoName,
 });
